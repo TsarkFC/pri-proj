@@ -1,1 +1,83 @@
-<mxfile host="app.diagrams.net" modified="2021-11-02T14:43:59.330Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36" etag="lg0jRXqmGlnS-QLW8NTn" version="15.6.5"><diagram id="SWPLuQD_uAmGsCWUyiwx" name="Page-1">7Vrfc9o4EP5rmGkfylgyOPCYhKTcTellSm7u7lHBi1FjLFcWAe6v78qWfwoIaaGkTJ6wPq9ka/f7dtdKWu71fPVRsng2Ej6ELer4q5Y7aFFKnG4HfzSyzhCP0AwIJPeNUQmM+f+QzzTogvuQ1AyVEKHicR2ciCiCiaphTEqxrJtNRVh/aswCsIDxhIU2+g/31SxDe/SixIfAg1n+ZOL1sztzlhubnSQz5otlBXJvWu61FEJlV/PVNYTaeblfsnm3W+4WLyYhUvtMcG9HdPjl7/W4MyJfOrfe1err8EPXvJta5xsGH/dvhkKqmQhExMKbEr2SYhH5oFd1cFTafBIiRpAg+BWUWptgsoUSCM3UPDR38YXl+l8zPx38pwftbj4crKo3B2szmopIXYtQSBz7MGWLEDd+lSgm1aUONcKRiCDFpHgE2zZkDxBescljkG7CNsjcoX2w1cukiB2SHsQc8BXRRELIFH+qz2OGfUFhV0y9ExxXpI5Rits3NDE6oR2nvkQiFnICZlY1zI2FOt1nFkJ3BaCshfCisp8SSln0AkYZYTyxcGF88ftTDCK/QbCT8YQ6B+IJPTFPyMUpePFsAtiWYzbnk31pgNtMw7LLH85R+OLSRpjpLw6zY+WDgZgzHiE2gCmPuOICB17qzweJV4G+ereEh4QrLP3U+aB93A7a+BPBMolZDDLHWeTrloDPQTs5ZtF7i1Z10ixnuOo4Zmkwlti01AnysvhPeRhuY8UTSAWr3byww52r0+21L7q1yJFc+cuyDyEebRurWaUL8ZztNKkF+MXRpBuyexY67fs8eMP7+zu0urz7IyXwtwUkKrfD51ZNzyNaXlNkXTtUufCqgXKPFijXCtSl/LbgT6IdK8vn2JrG+tJniiVKSPhtPE8a6Y30bZH0Nji+ENPhPX+SlvoV17XOUeqa16xre7Yv2MexdcUs1gbJjueQzc8pKZKteNii2bHU++f4r8+IjEAxrdKW3j6GyRnejz6dkZ6bXy+vQM/9Nz3X/OFlhpm+dhn2flL4Pxc2b69OZTxBJcQ8CtBUTAs96eMkBWkeeNfsPN3H9+fcy1iJlbhFJ/pcO9MtutGDx7Pg55sMD6OuzeWu3zvxqUDPku1nFJ7+WMRa9sASSGmILNTHu4pPQg3gU1nmR4aX6cfh2VTE4qg5r4g9W4wbKyI5VkWk7psUa/6gR5EiIRen1SLd72N/kLWjqEQWZYU0O5OR+nQH5mkVPd9yaSXMV1IuT9K1/uip+yvWdnfPbpcepB6/9OuU0C05Ytup/3MTjvM9m3uxkkluORILobQgw1kdSTXzNunt+Q17vIptd1U7MvklRmad8OSc0zZx3V+ct3FY/q0/E1b5HxPuzXc=</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2021-11-02T15:37:28.786Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36" etag="xlCifACeFhgPxpzRYWjK" version="15.6.5" type="github">
+  <diagram id="SWPLuQD_uAmGsCWUyiwx" name="Page-1">
+    <mxGraphModel dx="1054" dy="612" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="3FM2HRUyS4M1R4F6BxjH-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontColor=default;startArrow=none;strokeColor=default;labelBackgroundColor=default;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="390" y="240" as="sourcePoint" />
+            <mxPoint x="450" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3FM2HRUyS4M1R4F6BxjH-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fontColor=default;endArrow=none;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="200" y="240" as="sourcePoint" />
+            <mxPoint x="250" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3FM2HRUyS4M1R4F6BxjH-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=default;fontColor=default;strokeColor=default;" parent="1" source="3FM2HRUyS4M1R4F6BxjH-10" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="320" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3FM2HRUyS4M1R4F6BxjH-10" value="Domain Definition&lt;br&gt;(websites - e.g. newspapers - and time span)" style="rounded=0;whiteSpace=wrap;html=1;fontColor=default;strokeColor=default;fillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="238.75" y="100" width="162.5" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="3FM2HRUyS4M1R4F6BxjH-12" value="&lt;span&gt;HTTP API request&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontColor=default;strokeColor=default;fillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="260" y="225" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="3FM2HRUyS4M1R4F6BxjH-13" value="Arquivo.pt" style="shape=datastore;whiteSpace=wrap;html=1;fontColor=default;strokeColor=default;fillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="120" y="190" width="80" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="3FM2HRUyS4M1R4F6BxjH-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=default;fontColor=default;strokeColor=default;" parent="1" source="3FM2HRUyS4M1R4F6BxjH-14" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="620" y="240" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="610" y="240" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3FM2HRUyS4M1R4F6BxjH-14" value="JSON Metadata + HTML" style="shape=datastore;whiteSpace=wrap;html=1;fontColor=default;strokeColor=default;fillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="450" y="190" width="80" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="3FM2HRUyS4M1R4F6BxjH-19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=default;fontColor=default;strokeColor=default;" parent="1" source="3FM2HRUyS4M1R4F6BxjH-16" target="3FM2HRUyS4M1R4F6BxjH-18" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="3FM2HRUyS4M1R4F6BxjH-16" value="&lt;span&gt;Scrapping of HTML content (e.g. newspaper3k)&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontColor=default;strokeColor=default;fillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="620" y="213.75" width="120" height="52.5" as="geometry" />
+        </mxCell>
+        <mxCell id="3FM2HRUyS4M1R4F6BxjH-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=default;fontColor=default;strokeColor=default;" parent="1" source="3FM2HRUyS4M1R4F6BxjH-18" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="980" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3FM2HRUyS4M1R4F6BxjH-18" value="News Database with article meta parameters" style="shape=datastore;whiteSpace=wrap;html=1;fontColor=default;strokeColor=default;fillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="827" y="185" width="80" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="3FM2HRUyS4M1R4F6BxjH-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=default;fontColor=default;strokeColor=default;" parent="1" source="3FM2HRUyS4M1R4F6BxjH-22" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1170" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3FM2HRUyS4M1R4F6BxjH-22" value="&lt;span&gt;Data cleaning and refinement&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontColor=default;strokeColor=default;fillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="980" y="213.75" width="120" height="52.5" as="geometry" />
+        </mxCell>
+        <mxCell id="3FM2HRUyS4M1R4F6BxjH-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=default;fontColor=default;strokeColor=default;" parent="1" source="3FM2HRUyS4M1R4F6BxjH-25" target="3FM2HRUyS4M1R4F6BxjH-28" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1270" y="240" />
+              <mxPoint x="1270" y="240" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="3FM2HRUyS4M1R4F6BxjH-25" value="Final dataset" style="shape=datastore;whiteSpace=wrap;html=1;fontColor=default;strokeColor=default;fillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="1170" y="180" width="80" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="3FM2HRUyS4M1R4F6BxjH-28" value="&lt;span&gt;Data Analysis&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontColor=default;strokeColor=default;fillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="1330" y="213.75" width="120" height="52.5" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
