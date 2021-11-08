@@ -1,9 +1,11 @@
 import requests, json
 
 domains = [
-    "https://www.publico.pt/tecnologia",
     "https://www.noticiasaominuto.com/tech",
-    "https://www.sapo.pt/noticias/tecnologia"
+    "https://www.sapo.pt/noticias/tecnologia",
+    "https://www.jornaldenegocios.pt/empresas/tecnologias",
+    "https://pplware.sapo.pt/",
+    "https://visao.sapo.pt/exameinformatica/noticias-ei"
 ]
 
 d = {}
