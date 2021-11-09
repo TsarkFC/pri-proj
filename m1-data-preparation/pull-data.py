@@ -1,12 +1,14 @@
 from concurrent.futures import ThreadPoolExecutor
-from newspaper import Article
+#from newspaper import Article
 from tqdm import tqdm
+from bs4 import BeautifulSoup
 import requests, json, time, re, sys
+
 
 domains = {
     "https://www.noticiasaominuto.com/tech": re.compile("^(com,noticiasaominuto\)\/tech\/[0-9]+\/[a-z0-9-%]+)(?:(?:\?|&).*)?$"),
     "https://www.jornaldenegocios.pt/empresas/tecnologias": re.compile("^(pt,jornaldenegocios\)\/empresas\/tecnologias\/[a-z0-9-%]+\/[a-z0-9-%]+)(?:\?.*)?$"),
-    "https://visao.sapo.pt/exameinformatica/noticias-ei": re.compile("^(pt,sapo,visao\)\/exameinformatica\/noticias-ei(?:\/[a-z0-9-%]+)?\/[0-9]+-[a-z0-9-%.]+)(?:\?.*)?$")
+    # "https://visao.sapo.pt/exameinformatica/noticias-ei": re.compile("^(pt,sapo,visao\)\/exameinformatica\/noticias-ei(?:\/[a-z0-9-%]+)?\/[0-9]+-[a-z0-9-%.]+)(?:\?.*)?$")
 }
 '''
 domains = {
@@ -51,22 +53,49 @@ def domain_request(domain, article_validation_regex):
     d[domain] = domain_dic
 
 
-def get_article_info(url, html = None):
-    a = Article(url)
+def get_article_info_bs(url : str, html = None):
+    if not html: return
 
-    if not html: a.download()
-    else: a.set_html(html)
+    soup = BeautifulSoup(html, "html.parser")
 
-    a.parse()
+    info = {}
+    if re.search("noticiasaominuto", url):
+        info['title'] = soup.select_one(".news-headline").contents[0]
+        info['summary'] = soup.select_one(".news-subheadline").contents[0]
+        info['image'] = soup.select_one(".news-main-image picture img").attrs['src']
+        info['date'] = soup.select_one(".news-info-time").contents[0]
+        info['authors'] = soup.select_one(".author-hover").contents[0]
+        info['text'] = soup.select_one(".news_capital_letter").contents
+        info['text'].extend([a.contents[-1] for a in soup.select(".news-main-text > p")])
+        info['text'] = info['text'][0] + "\n".join(info['text'][1:])
+    
+    if re.search("jornaldenegocios", url):
+        info['title'] = soup.select_one(".article_title").contents[0].strip()
+        info['summary'] = soup.select_one(".lead").contents[0].strip()
+        info['image'] = soup.select_one(".main_article .image img").attrs['src']
+        info['date'] = soup.select_one(".info_autor span").contents[0]
+        info['authors'] = soup.select_one(".info_autor strong").contents[0]
+        info['text'] = [a.contents[0] for a in soup.select(".main_text .texto > p")]
+        info['text'] = "\n".join(info['text'][1:])
 
-    return {
-        'title': a.title,
-        'authors': a.authors,
-        # 'publish_date': a.publish_date.str,
-        'text': a.text,
-        'top_image': a.top_image,
-        'summary': a.summary
-    }
+    return info
+    
+# def get_article_info(url, html = None):
+#     a = Article(url)
+
+#     if not html: a.download()
+#     else: a.set_html(html)
+
+#     a.parse()
+
+#     return {
+#         'title': a.title,
+#         'authors': a.authors,
+#         # 'publish_date': a.publish_date.str,
+#         'text': a.text,
+#         'top_image': a.top_image,
+#         'summary': a.summary
+#     }
 
 
 def article_request(response, domain_dic, article_validation_regex, progress_bar):
@@ -103,7 +132,7 @@ def article_request(response, domain_dic, article_validation_regex, progress_bar
             return
 
     # Running newspaper3k on the received HTML
-    parsed["article"] = get_article_info(url, r.text)
+    parsed["article"] = get_article_info_bs(url, r.text)
 
     article_entry[parsed["timestamp"]] = parsed
     domain_dic[urlkey_base] = article_entry
