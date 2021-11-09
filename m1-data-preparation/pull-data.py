@@ -8,7 +8,7 @@ import requests, json, time, re, sys
 domains = {
     "https://www.noticiasaominuto.com/tech": re.compile("^(com,noticiasaominuto\)\/tech\/[0-9]+\/[a-z0-9-%]+)(?:(?:\?|&).*)?$"),
     "https://www.jornaldenegocios.pt/empresas/tecnologias": re.compile("^(pt,jornaldenegocios\)\/empresas\/tecnologias\/[a-z0-9-%]+\/[a-z0-9-%]+)(?:\?.*)?$"),
-    # "https://visao.sapo.pt/exameinformatica/noticias-ei": re.compile("^(pt,sapo,visao\)\/exameinformatica\/noticias-ei(?:\/[a-z0-9-%]+)?\/[0-9]+-[a-z0-9-%.]+)(?:\?.*)?$")
+    "https://visao.sapo.pt/exameinformatica/noticias-ei": re.compile("^(pt,sapo,visao\)\/exameinformatica\/noticias-ei(?:\/[a-z0-9-%]+)?\/[0-9]+-[a-z0-9-%.]+)(?:\?.*)?$")
 }
 '''
 domains = {
@@ -36,7 +36,7 @@ def article_url(timestamp, url):
 def domain_request(domain, article_validation_regex):
     print(f"\nRequesting CDX data for {domain}...")
 
-    r = requests.get(cdx_url(20210101000000, 20211101000000, domain))
+    r = requests.get(cdx_url(20210401000000, 20210501000000, domain))
     if r.status_code != 200: return
 
     domain_dic = {}
@@ -78,8 +78,18 @@ def get_article_info_bs(url : str, html = None):
         info['text'] = [a.contents[0] for a in soup.select(".main_text .texto > p")]
         info['text'] = "\n".join(info['text'][1:])
 
+    if re.search("exameinformatica", url):
+        info['title'] = soup.select_one(".entry-title").contents[0]
+        info['summary'] = soup.select_one(".entry-excerpt").contents[0].strip('\n ')
+        info['image'] = soup.select_one(".wp-block-image img").attrs['src']
+        info['date'] = soup.select_one(".publish-date").contents[0]
+        authors = soup.select_one(".author-meta name")
+        info['authors'] = authors.contents[0] if authors != None else ""
+        info['text'] = [a.contents[0] for a in soup.select(".entry-content > p")]
+        info['text'] = "\n".join(info['text'][1:])
+
     return info
-    
+
 # def get_article_info(url, html = None):
 #     a = Article(url)
 
