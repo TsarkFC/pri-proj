@@ -100,36 +100,6 @@ def get_article_info_bs(url : str, indexation_timestamp, html = None):
     soup = BeautifulSoup(html, "html.parser")
 
     info = None
-    if re.search("noticiasaominuto", url):
-        authors = soup.select_one(".author-hover")
-
-        date = parse_date(indexation_timestamp, "noticiasaominuto", soup.select_one(".news-info-time").contents[0])
-
-        info = {
-            'title' : soup.select_one(".news-headline").get_text(),
-            'summary' : soup.select_one(".news-subheadline").get_text(),
-            'image' : soup.select_one(".news-main-image picture img").attrs['src'],
-            'publish_date' : date,
-            'authors' : authors.get_text() if authors != None else "",
-            'text' : newline_replace_regex.sub("\n", soup.select_one(".news-main-text").get_text().strip("\r\n"))
-        }
-    
-    if re.search("jornaldenegocios", url):
-        authors = soup.select_one(".info_autor strong")
-        
-        date = parse_date(indexation_timestamp, "jornaldenegocios", soup.select_one(".info_autor span").get_text())
-        
-        info = {
-            'title' : soup.select_one(".article_title").get_text().strip(),
-            'summary' : soup.select_one(".lead").get_text().strip(),
-            'image' : soup.select_one(".multimedia_container img").attrs['src'],
-            'publish_date' : date,
-            'authors' : authors.get_text() if authors != None else "",
-            'text' : newline_replace_regex.sub("\n", soup.select_one(".main_text .texto").get_text().strip("\r\n"))
-        }
-    
-    print(url, file=sys.stderr)
-
     if re.search("exameinformatica", url):
         authors = soup.select_one(".author-meta .name")
         
@@ -148,6 +118,36 @@ def get_article_info_bs(url : str, indexation_timestamp, html = None):
             'authors' : authors.get_text() if authors != None else "",
             'text' : newline_replace_regex.sub("\n", soup.select_one(".entry-content").get_text().strip("\r\n"))
         }
+
+    elif re.search("noticiasaominuto", url):
+        authors = soup.select_one(".author-hover")
+
+        date = parse_date(indexation_timestamp, "noticiasaominuto", soup.select_one(".news-info-time").contents[0])
+
+        info = {
+            'title' : soup.select_one(".news-headline").get_text(),
+            'summary' : soup.select_one(".news-subheadline").get_text(),
+            'image' : soup.select_one(".news-main-image picture img").attrs['src'],
+            'publish_date' : date,
+            'authors' : authors.get_text() if authors != None else "",
+            'text' : newline_replace_regex.sub("\n", soup.select_one(".news-main-text").get_text().strip("\r\n"))
+        }
+    
+    elif re.search("jornaldenegocios", url):
+        authors = soup.select_one(".info_autor strong")
+        
+        date = parse_date(indexation_timestamp, "jornaldenegocios", soup.select_one(".info_autor span").get_text())
+        
+        info = {
+            'title' : soup.select_one(".article_title").get_text().strip(),
+            'summary' : soup.select_one(".lead").get_text().strip(),
+            'image' : soup.select_one(".multimedia_container img").attrs['src'],
+            'publish_date' : date,
+            'authors' : authors.get_text() if authors != None else "",
+            'text' : newline_replace_regex.sub("\n", soup.select_one(".main_text .texto").get_text().strip("\r\n"))
+        }
+
+    
 
     return info
 
