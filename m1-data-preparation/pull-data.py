@@ -1,9 +1,7 @@
 from concurrent.futures import ThreadPoolExecutor
-#from newspaper import Article
 from tqdm import tqdm
 from bs4 import BeautifulSoup
 import requests, json, time, re, sys
-
 
 domains = {
     "https://www.noticiasaominuto.com/tech": re.compile("^(com,noticiasaominuto\)\/tech\/[0-9]+\/[a-z0-9-%]+)(?:(?:\?|&).*)?$"),
@@ -153,22 +151,6 @@ def get_article_info_bs(url : str, indexation_timestamp, html = None):
 
     return info
 
-# def get_article_info(url, html = None):
-#     a = Article(url)
-
-#     if not html: a.download()
-#     else: a.set_html(html)
-
-#     a.parse()
-
-#     return {
-#         'title': a.title,
-#         'authors': a.authors,
-#         # 'publish_date': a.publish_date.str,
-#         'text': a.text,
-#         'top_image': a.top_image,
-#         'summary': a.summary
-#     }
 errors = []
 
 def article_request(response, domain_dic, article_validation_regex, progress_bar):
