@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-11-14T19:53:01.670Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="_6GvueBXyDP_pw5TE8pf" version="15.7.0" type="github">
+<mxfile host="app.diagrams.net" modified="2021-11-14T20:42:51.097Z" agent="5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36" etag="BvMrYQ_9gtQbyZoB-hSq" version="15.7.0" type="github">
   <diagram id="SWPLuQD_uAmGsCWUyiwx" name="Page-1">
     <mxGraphModel dx="1881" dy="611" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -21,7 +21,7 @@
             <mxPoint x="171.25" y="220" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="3FM2HRUyS4M1R4F6BxjH-10" value="Domain Definition&lt;br&gt;(websites - e.g. newspapers - and time span)" style="rounded=0;whiteSpace=wrap;html=1;fontColor=default;strokeColor=default;fillColor=default;" parent="1" vertex="1">
+        <mxCell id="3FM2HRUyS4M1R4F6BxjH-10" value="Domain Definition&lt;br&gt;(websites - newspapers - and time span)" style="rounded=0;whiteSpace=wrap;html=1;fontColor=default;strokeColor=default;fillColor=default;" parent="1" vertex="1">
           <mxGeometry x="90" y="100" width="162.5" height="60" as="geometry" />
         </mxCell>
         <mxCell id="3FM2HRUyS4M1R4F6BxjH-12" value="&lt;span&gt;HTTP API request to obtain news URLs&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontColor=default;strokeColor=default;fillColor=default;" parent="1" vertex="1">
@@ -42,8 +42,8 @@
             <mxPoint x="730" y="100" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="3FM2HRUyS4M1R4F6BxjH-16" value="&lt;span&gt;Scrapping of HTML content&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontColor=default;strokeColor=default;fillColor=default;" parent="1" vertex="1">
-          <mxGeometry x="640" y="216.88" width="120" height="46.25" as="geometry" />
+        <mxCell id="3FM2HRUyS4M1R4F6BxjH-16" value="&lt;span&gt;Scrapping each article&#39;s HTML content with Beautiful Soup to obtain article information (e.g. author, title, content, published date, etc)&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontColor=default;strokeColor=default;fillColor=default;" parent="1" vertex="1">
+          <mxGeometry x="640" y="181.97" width="120" height="114.81" as="geometry" />
         </mxCell>
         <mxCell id="3FM2HRUyS4M1R4F6BxjH-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=default;fontColor=default;strokeColor=default;endArrow=classic;endFill=1;" parent="1" source="3FM2HRUyS4M1R4F6BxjH-18" edge="1">
           <mxGeometry relative="1" as="geometry">
