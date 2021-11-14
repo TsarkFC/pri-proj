@@ -77,7 +77,7 @@ for domain_id, links in news_links.items():
     domain_dic = {}
     
     with ThreadPoolExecutor(max_workers=8) as executor:
-        executor.map(lambda cdx_entry: article_request(cdx_entry, domain_dic, domain_id, domains[domain_id]["regex"]), links)
+        executor.map(lambda cdx_entry: article_request(cdx_entry, domain_dic, domain_id, domains[domain_id]["regex"]), links)        
 
     d[domain_id] = domain_dic
     

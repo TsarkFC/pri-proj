@@ -1,6 +1,7 @@
 from concurrent.futures import ThreadPoolExecutor
 from tqdm import tqdm
 from bs4 import BeautifulSoup
+from threading import Lock
 import requests, json, time, re, sys
 
 NOTICIAS_AO_MINUTO = "noticiasaominuto"
@@ -62,6 +63,9 @@ def domain_request(domain_id, domain_data):
 
     with ThreadPoolExecutor(max_workers=8) as executor:
         executor.map(lambda cdx_entry: article_request(cdx_entry, domain_dic, domain_id, domain_data["regex"], progress_bar), data)
+
+    # for cdx_entry in data:
+    #     article_request(cdx_entry, domain_dic, domain_id, domain_data["regex"], progress_bar)
 
     progress_bar.close()
     d[domain_id] = domain_dic
@@ -179,9 +183,6 @@ def article_request(response, domain_dic, domain_id, article_validation_regex, p
         print(f"NOT an article: {parsed['urlkey']}", file=sys.stderr)
         return
 
-    urlkey_base = urlkey_match.group(1) # urlkey without get parameters
-    
-    article_entry = domain_dic.get(urlkey_base, {})
     url = article_url(parsed["timestamp"], parsed["url"])
 
     r = None
@@ -197,10 +198,16 @@ def article_request(response, domain_dic, domain_id, article_validation_regex, p
             print(f"Invalid url: {url}, status code: {r.status_code}", file=sys.stderr)
             return
 
+    lock.acquire()
     parsed["article"] = get_article_info(domain_id, parsed["timestamp"], r.text)
 
+    urlkey_base = urlkey_match.group(1) # urlkey without get parameters
+    article_entry = domain_dic.get(urlkey_base, {})
     article_entry[parsed["timestamp"]] = parsed
     domain_dic[urlkey_base] = article_entry
+    lock.release()
+
+lock = Lock()
 
 print("Starting data retrieval.")
 for domain_id, domain_data in domains.items():
