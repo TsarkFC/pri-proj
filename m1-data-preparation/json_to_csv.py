@@ -7,9 +7,9 @@ def check_args():
     return True
 
 def flatten_json(data):
-    domains = []
-    urlkeys = []
-    news = []
+    domains = [["domain_pk", "domain"]]
+    urlkeys = [["urlkey_pk", "domain_pk", "urlkey"]]
+    news = [["news_pk", "urlkey_pk", "timestamp", "title", "summary", "image", "publish_date", "authors", "text"]]
 
     domain_pk = 1
     urlkey_pk = 1
@@ -18,21 +18,21 @@ def flatten_json(data):
     for domain in data.keys():
         domains.append([domain_pk, domain])
         urls = data[domain]
-        domain_pk += 1
 
         for urlkey in urls.keys():
             if str(urls[urlkey]) == "nan": continue
             timestamps = urls[urlkey]
             urlkeys.append([urlkey_pk, domain_pk, urlkey])
-            urlkey_pk += 1
 
             for timestamp in timestamps.keys():
                 element = [news_pk, urlkey_pk, timestamp]
-                article_details = timestamps[timestamp]["article"]
-                article_details_list = [article_details[key] for key in article_details]
-                element.extend(article_details_list)
+                article = timestamps[timestamp]["article"]
+                article_details = [article[key] for key in article]
+                element.extend(article_details)
                 news.append(element)
                 news_pk += 1
+            urlkey_pk += 1
+        domain_pk += 1
 
     return [domains, urlkeys, news]
 
