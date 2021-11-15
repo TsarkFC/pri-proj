@@ -50,7 +50,7 @@ def main():
     if not check_args(): return
 
     try:
-        df = pd.read_json(sys.argv[1])
+        df = pd.read_json(sys.stdin)
     except:
         print("[error] provided file is not loadable as json")
         return
