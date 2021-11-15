@@ -1,4 +1,5 @@
 from concurrent.futures import ThreadPoolExecutor
+from threading import Lock
 import requests, json, time, re, sys
 
 NOTICIAS_AO_MINUTO = "noticiasaominuto"
@@ -42,10 +43,6 @@ def article_request(parsed, domain_dic, domain_id, article_validation_regex):
     if not urlkey_match:
         print(f"NOT an article: {parsed['urlkey']}", file=sys.stderr)
         return
-
-    urlkey_base = urlkey_match.group(1) # urlkey without get parameters
-    
-    article_entry = domain_dic.get(urlkey_base, {})
     url = article_url(parsed["timestamp"], parsed["url"])
 
     r = None
@@ -61,9 +58,14 @@ def article_request(parsed, domain_dic, domain_id, article_validation_regex):
             print(f"Invalid url: {url}, status code: {r.status_code}", file=sys.stderr)
             return
 
+    lock.acquire()
+    urlkey_base = urlkey_match.group(1) # urlkey without get parameters
+    
+    article_entry = domain_dic.get(urlkey_base, {})
     article_entry[parsed["timestamp"]] = parsed
     article_entry[parsed["timestamp"]]['html'] = r.text
     domain_dic[urlkey_base] = article_entry
+    lock.release()
     
 
 news_links = {}
@@ -72,6 +74,8 @@ try:
 except Exception:
     print(f"Invalid JSON string from stdin", file=sys.stderr)
     exit()
+
+lock = Lock()
 
 for domain_id, links in news_links.items():
     domain_dic = {}
