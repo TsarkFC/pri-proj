@@ -3,5 +3,4 @@
 Test/
 *.json
 *.csv
-csv/
 plots/
