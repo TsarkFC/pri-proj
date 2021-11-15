@@ -8,6 +8,8 @@ pd.options.mode.chained_assignment = None
 domain = pd.read_csv("csv/domain.csv", delimiter=',', quotechar='"')
 news = pd.read_csv("csv/news.csv", delimiter=',', quotechar='"')
 urlkeys = pd.read_csv("csv/urlkeys.csv", delimiter=',', quotechar='"')
+# entities = pd.read_csv("csv/entities.csv", delimiter=',', quotechar='"')
+# news_entities = pd.read_csv("csv/news_entities.csv", delimiter=',', quotechar='"')
 
 def save_to_file():
     if len(sys.argv) != 2:
@@ -54,6 +56,7 @@ def set_plot(data, xlabel, ylabel, title, access_method, filename, colors=["blue
         create_dir("plots")
         fig = plot.get_figure()
         fig.savefig("plots/" + filename + ".png")
+        plt.close()
     else:
         plt.show()
 
@@ -142,8 +145,14 @@ def group_by_year(url=None):
     set_plot(grouped, "year", "number of indexed articles", title_str, access, "group_by_year")
 
 
+def entities_count():
+    grouped = news_entities.groupby("entity_pk").size()
+    print(grouped)
+    
+
 total_news()
 total_updated_news()
 number_of_times_indexed("exameinformatica")
 avg_article_length()
 group_by_year("exameinformatica")
+# entities_count()
