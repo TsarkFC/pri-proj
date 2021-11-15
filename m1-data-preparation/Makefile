@@ -1,7 +1,12 @@
 error_file = pull-data.err
 
+# Our makefile is directly connected to the pipeline descrbied in the report and can easily be 
+# understood by reading that chapter.
+
+# run "make" to execute this target that executes the whole pipeline
 all: pulllinks removenonnews pullhtml parseinfo cleanads spacy jsontocsv characterization
 
+# Old script that can still be used for debug purposes
 dataset:
 	@python3 pull-data_old.py 2> pull-data_old.err
 
