@@ -1,11 +1,5 @@
 import pandas as pd, csv, sys, os
 
-def check_args():
-    if len(sys.argv) != 2:
-        print("[error] run: python json_to_csv.py file")
-        return False
-    return True
-
 news_entity_relation_csv = ["news_pk,entity_pk\n"]
 
 def flatten_json(data):
@@ -47,10 +41,8 @@ def create_dir(dirname):
         os.makedirs(dirname)
 
 def main():
-    if not check_args(): return
-
     try:
-        df = pd.read_json(sys.argv[1])
+        df = pd.read_json(sys.stdin)
     except:
         print("[error] provided file is not loadable as json")
         return

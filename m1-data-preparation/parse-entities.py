@@ -51,7 +51,7 @@ lock = Lock()
 
 def process_entities(data):
     global current_entity_id, lock, entities
-    progress_bar.update(1)
+    #progress_bar.update(1)
     doc = nlp(data["article"]["text"])
     data["article"]["entities"] = set()
 
@@ -97,14 +97,13 @@ for domain_id, news in news_sites.items():
         for timestamp, d in timestamps.items():
             data.append(d)
 
-progress_bar = tqdm(total=len(data), file=sys.stdout)
+#progress_bar = tqdm(total=len(data), file=sys.stdout)
 
 
 with ThreadPoolExecutor(max_workers=4) as executor:
     executor.map(lambda data: process_entities(data), data)
-            
 
-progress_bar.close()
+#progress_bar.close()
 
 # deciding the best classigication for each entity
 for slug, entity in entities.items():
@@ -137,8 +136,7 @@ csv_entities = [["entity_pk","slug","title","label"]]
 for slug, entity in entities.items():
     csv_entities.append([ entity['id'], slug, entity['name'], entity['label'] ])
 
-with open("data-parsed-entities.json", "w") as f:
-    json.dump(news_sites, f, indent = 4)
+json.dump(news_sites, sys.stdout, indent = 4)
 
 with open("entities.csv", "w", newline='') as f:
     writer = csv.writer(f)
