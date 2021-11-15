@@ -17,10 +17,10 @@ domains = {
         "url": "https://www.jornaldenegocios.pt/empresas/tecnologias",
         "regex": re.compile("^(pt,jornaldenegocios\)\/empresas\/tecnologias\/[a-z0-9-%]+\/[a-z0-9-%]+)(?:\?.*)?$")
     },
-    EXAME_INFORMATICA: {
-        "url": "https://visao.sapo.pt/exameinformatica/noticias-ei",
-        "regex": re.compile("^(pt,sapo,visao\)\/exameinformatica\/noticias-ei(?:\/[a-z0-9-%]+)?\/[0-9]+-[a-z0-9-%.]+)(?:\?.*)?$")
-    }
+    # EXAME_INFORMATICA: {
+    #     "url": "https://visao.sapo.pt/exameinformatica/noticias-ei",
+    #     "regex": re.compile("^(pt,sapo,visao\)\/exameinformatica\/noticias-ei(?:\/[a-z0-9-%]+)?\/[0-9]+-[a-z0-9-%.]+)(?:\?.*)?$")
+    # }
 }
 '''
 domains = {
@@ -51,7 +51,7 @@ def article_url(timestamp, url):
 def domain_request(domain_id, domain_data):
     print(f"\nRequesting CDX data for {domain_id}...")
 
-    r = requests.get(cdx_url(20210101000000, 20211101000000, domain_data["url"]))
+    r = requests.get(cdx_url(20210101000000, 20210301000000, domain_data["url"]))
     if r.status_code != 200: return
 
     domain_dic = {}
@@ -213,5 +213,5 @@ print("Starting data retrieval.")
 for domain_id, domain_data in domains.items():
     domain_request(domain_id, domain_data)
 
-with open("data.json", "w") as file:
+with open("data2.json", "w") as file:
     json.dump(d, file, indent=4)

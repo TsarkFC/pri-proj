@@ -2,4 +2,5 @@
 pull-data.err
 Test/
 *.json
+*.csv
 csv/
