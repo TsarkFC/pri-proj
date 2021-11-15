@@ -1,6 +1,7 @@
 .ipynb_checkpoints
-pull-data.err
+*.err
 Test/
 *.json
+*.csv
 csv/
 plots/
