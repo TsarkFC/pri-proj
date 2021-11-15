@@ -1,4 +1,4 @@
-import json, sys, spacy
+import json, sys, spacy, csv
 from threading import Lock
 from concurrent.futures import ThreadPoolExecutor
 from slugify import slugify
@@ -34,6 +34,7 @@ first_word_blacklist = [
 
 def clean_entity_text(text):
     text = text.strip()
+
     text_lower = text[:3].lower()
     
     for word in first_word_blacklist:
@@ -132,12 +133,15 @@ for slug, entity in entities.items():
     entity['name'] = most_used[0]
 
 
-csv_entities = "entity_pk,slug,title,label\n"
+csv_entities = [["entity_pk","slug","title","label"]]
 for slug, entity in entities.items():
-    csv_entities += f"{entity['id']},{slug},{entity['name']},{entity['label']}\n"
+    csv_entities.append([ entity['id'], slug, entity['name'], entity['label'] ])
 
 with open("data-parsed-entities.json", "w") as f:
     json.dump(news_sites, f, indent = 4)
 
-with open("entities.csv", "w") as f:
-    f.write(csv_entities)
+with open("entities.csv", "w", newline='') as f:
+    writer = csv.writer(f)
+    for row in csv_entities:
+        writer.writerow(row)
+
