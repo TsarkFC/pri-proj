@@ -1,5 +1,5 @@
 import pandas as pd
-import os
+import os, sys
 import matplotlib.pyplot as plt
 
 pd.set_option('display.max_columns', 500)
@@ -9,6 +9,12 @@ domain = pd.read_csv("csv/domain.csv", delimiter=',', quotechar='"')
 news = pd.read_csv("csv/news.csv", delimiter=',', quotechar='"')
 urlkeys = pd.read_csv("csv/urlkeys.csv", delimiter=',', quotechar='"')
 
+def save_to_file():
+    if len(sys.argv) != 2:
+        return False
+    if sys.argv[1] == "save":
+        return True
+    return False
 
 def access(data, i):
     return data[i]
@@ -35,7 +41,7 @@ def count_top_of_bar(plot, data, func):
         )
 
 
-def set_plot(data, xlabel, ylabel, title, access_method, colors=["blue"], y=None):
+def set_plot(data, xlabel, ylabel, title, access_method, filename, colors=["blue"], y=None):
     if y is None:
         y = data
 
@@ -43,10 +49,16 @@ def set_plot(data, xlabel, ylabel, title, access_method, colors=["blue"], y=None
     plot.set_xlabel(xlabel)
     plot.set_ylabel(ylabel)
     count_top_of_bar(plot, y, access_method)
-    plt.show()
+    
+    if save_to_file():
+        create_dir("plots")
+        fig = plot.get_figure()
+        fig.savefig("plots/" + filename + ".png")
+    else:
+        plt.show()
 
 
-def total_news_plot(grouped, title, xlabel, ylabel):
+def total_news_plot(grouped, title, xlabel, ylabel, filename):
     colors = {"noticiasaominuto.com": "red",
               "jornaldenegocios.pt": "green", "exameinformatica": "blue"}
     labels = list(colors.keys())
@@ -54,13 +66,13 @@ def total_news_plot(grouped, title, xlabel, ylabel):
                for label in labels]
     plt.legend(handles, labels)
 
-    set_plot(grouped, xlabel, ylabel, title, access_plus_one, colors.values())
+    set_plot(grouped, xlabel, ylabel, title, access_plus_one, filename, colors.values())
 
 
 def total_news():
     grouped = urlkeys.groupby(by=["domain_pk"]).size()
     total_news_plot(
-        grouped, "Number of tech news per domain in 2021, indexed by arquivo.pt", "domain", "number of news")
+        grouped, "Number of tech news per domain in 2021, indexed by arquivo.pt", "domain", "number of news", "total_news")
 
 
 def total_updated_news():
@@ -69,10 +81,10 @@ def total_updated_news():
 
     grouped = joined.groupby(by=["domain_pk"]).size()
     total_news_plot(
-        grouped, "Total number of indexed tech news per domain in 2021, indexed by arquivo.pt", "domain", "number of news")
+        grouped, "Total number of indexed tech news per domain in 2021, indexed by arquivo.pt", "domain", "number of news", "total_updated_news")
 
 
-def number_of_times_news_were_indexed(url=None):
+def number_of_times_indexed(url=None):
     if url:
         domain_pk = int(domain[domain["domain"] == url]["domain_pk"])
         news_urlkeys = news.merge(urlkeys, on="urlkey_pk", how="left")
@@ -98,7 +110,7 @@ def number_of_times_news_were_indexed(url=None):
     if url: title_str += url
     else: title_str += "all domains"
 
-    set_plot(df, x_label, y_label, title_str, access, y=y)
+    set_plot(df, x_label, y_label, title_str, access, "number_of_times_indexed", y=y)
 
 
 def avg_article_length():
@@ -110,7 +122,7 @@ def avg_article_length():
     grouped = joined.groupby("domain_pk")["article_length"].mean().astype(int)
 
     total_news_plot(grouped, "Mean of size article text per domain of pages indexed by arquivo.pt",
-                    "domain", "mean length of article (characters)")
+                    "domain", "mean length of article (characters)", "avg_article_length")
 
 
 def group_by_year(url=None):
@@ -127,11 +139,11 @@ def group_by_year(url=None):
     if url: title_str += url
     else: title_str += "all domains"
 
-    set_plot(grouped, "year", "number of indexed articles", title_str, access)
+    set_plot(grouped, "year", "number of indexed articles", title_str, access, "group_by_year")
 
 
-# total_news()
-# total_updated_news()
-# number_of_times_news_were_indexed("exameinformatica")
-# avg_article_length()
+total_news()
+total_updated_news()
+number_of_times_indexed("exameinformatica")
+avg_article_length()
 group_by_year("exameinformatica")

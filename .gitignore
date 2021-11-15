@@ -3,3 +3,4 @@ pull-data.err
 Test/
 *.json
 csv/
+plots/
