@@ -1,6 +1,7 @@
 import pandas as pd
 import os, sys
 import matplotlib.pyplot as plt
+from pandas.core.frame import DataFrame
 
 pd.set_option('display.max_columns', 500)
 pd.options.mode.chained_assignment = None
@@ -8,8 +9,8 @@ pd.options.mode.chained_assignment = None
 domain = pd.read_csv("csv/domain.csv", delimiter=',', quotechar='"')
 news = pd.read_csv("csv/news.csv", delimiter=',', quotechar='"')
 urlkeys = pd.read_csv("csv/urlkeys.csv", delimiter=',', quotechar='"')
-# entities = pd.read_csv("csv/entities.csv", delimiter=',', quotechar='"')
-# news_entities = pd.read_csv("csv/news_entities.csv", delimiter=',', quotechar='"')
+entities = pd.read_csv("csv/entities.csv", delimiter=',', quotechar='"')
+news_entities = pd.read_csv("csv/news_entities.csv", delimiter=',', quotechar='"')
 
 def save_to_file():
     if len(sys.argv) != 2:
@@ -107,7 +108,7 @@ def number_of_times_indexed(url=None):
     x_label = "index count"
     y_label = "number of news"
     df = pd.DataFrame({y_label: y})
-    df.index = pd.RangeIndex(1,len(df) + 1)
+    df.index = pd.RangeIndex(1, len(df) + 1)
 
     title_str = "Number of times news were indexed at arquivo.pt at "
     if url: title_str += url
@@ -146,13 +147,35 @@ def group_by_year(url=None):
 
 
 def entities_count():
-    grouped = news_entities.groupby("entity_pk").size()
-    print(grouped)
-    
+    grouped = news_entities.groupby("entity_pk").count().nlargest(10, "news_pk")
+    merged = grouped.merge(entities, on="entity_pk", how="left")
 
-total_news()
-total_updated_news()
-number_of_times_indexed("exameinformatica")
-avg_article_length()
-group_by_year("exameinformatica")
-# entities_count()
+    xlabel = "entities"
+    ylabel = "number of articles"
+
+    names = merged["title"]
+    count = merged["news_pk"]
+    title = "Top 10 most referenced entities"
+
+    df = pd.DataFrame({xlabel: names, ylabel: count})
+    plot = df.plot(kind="bar", title=title, legend=None, color="blue")
+    count_top_of_bar(plot, count, access)
+
+    plt.xticks(range(len(names)), names, rotation="horizontal")
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+
+    if save_to_file():
+        create_dir("plots")
+        fig = plot.get_figure()
+        fig.savefig("plots/entities_count.png")
+        plt.close()
+    else:
+        plt.show()    
+
+# total_news()
+# total_updated_news()
+# number_of_times_indexed("exameinformatica")
+# avg_article_length()
+# group_by_year("exameinformatica")
+entities_count()
