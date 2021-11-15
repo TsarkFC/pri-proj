@@ -213,5 +213,5 @@ print("Starting data retrieval.")
 for domain_id, domain_data in domains.items():
     domain_request(domain_id, domain_data)
 
-with open("data2.json", "w") as file:
+with open("data_old.json", "w") as file:
     json.dump(d, file, indent=4)

@@ -27,7 +27,7 @@ def flatten_json(data):
             for timestamp in timestamps.keys():
                 element = [news_pk, urlkey_pk, timestamp]
                 article = timestamps[timestamp]["article"]
-                article_details = [article[key] for key in article]
+                article_details = [article[key] for key in article if key != "entities"] # we don't want to include the entities in the csv
                 element.extend(article_details)
                 news.append(element)
                 news_pk += 1
