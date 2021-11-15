@@ -173,9 +173,9 @@ def entities_count():
     else:
         plt.show()    
 
-# total_news()
-# total_updated_news()
-# number_of_times_indexed("exameinformatica")
-# avg_article_length()
-# group_by_year("exameinformatica")
+total_news()
+total_updated_news()
+number_of_times_indexed("exameinformatica")
+avg_article_length()
+group_by_year("exameinformatica")
 entities_count()
