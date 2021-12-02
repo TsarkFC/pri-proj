@@ -17,7 +17,7 @@ echo "Schema added, adding data"
 # Populate collection
 bin/post -c arquivo /data/arquivo.json 1> /dev/null
 
-echo "Data addeed, restarting"
+echo "Data added, restarting"
 
 # Restart in foreground mode so we can access the interface
 solr restart -f 1> /dev/null

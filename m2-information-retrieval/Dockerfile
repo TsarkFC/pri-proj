@@ -1,6 +1,6 @@
 FROM solr:8.10
 
-COPY dataset/data-final.json /data/arquivo.json
+COPY dataset/data.json /data/arquivo.json
 
 COPY schema.json /data/schema.json
 
