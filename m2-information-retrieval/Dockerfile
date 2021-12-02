@@ -1,0 +1,10 @@
+FROM solr:8.10
+
+COPY dataset/data-final.json /data/arquivo.json
+
+COPY schema.json /data/schema.json
+
+COPY scripts/startup.sh /scripts/startup.sh
+
+ENTRYPOINT ["/scripts/startup.sh"]
+

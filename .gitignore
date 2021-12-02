@@ -4,4 +4,8 @@ Test/
 *.json
 *.csv
 plots/
+<<<<<<< HEAD
 data-not-clean-add-not-entities.zip
+=======
+!schema.json
+>>>>>>> 9e35034 (Initial setup for 2nd milestone)
