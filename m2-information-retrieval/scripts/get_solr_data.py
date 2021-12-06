@@ -15,7 +15,6 @@ for newspaper in data.keys():
             obj = data[newspaper][urlkey][version]
             obj["urlkey"] = urlkey # update urlkey - some versions have different urlkeys that have query parameters
             obj["newspaper"] = newspaper
-            del obj["article"]
             output.append(obj)
 
 json.dump(output, output_file, indent=4)
