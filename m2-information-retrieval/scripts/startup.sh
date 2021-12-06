@@ -8,9 +8,9 @@ solr start -m 2g
 echo "Started, adding schema"
 
 # Schema definition via API
-#curl -X POST -H 'Content-type:application/json' \
-    #--data-binary @/data/schema.json \
-    #http://localhost:8983/solr/arquivo/schema 1> /dev/null
+curl -X POST -H 'Content-type:application/json' \
+    --data-binary @/data/schema.json \
+    http://localhost:8983/solr/arquivo/schema 1> /dev/null
 
 echo "Schema added, adding data"
 
