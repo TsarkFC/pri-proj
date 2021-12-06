@@ -1,7 +1,7 @@
 {
     "add-field-type": [
         {
-            "name": "courseTitle",
+            "name": "tokenizedText",
             "class": "solr.TextField",
             "indexAnalyzer": {
                 "tokenizer": {
@@ -31,8 +31,35 @@
     ],
     "add-field": [
         {
-            "name": "title",
-            "type": "courseTitle",
+            "name": "url",
+            "type": "tokenizedText",
+            "indexed": true
+        },
+        {
+            "name": "timestamp",
+            "type": "org.apache.solr.schema.DatePointField",
+            "indexed": true,
+            "docValues": true
+        },
+        {
+            "name": "article.publish_date",
+            "type": "org.apache.solr.schema.DatePointField",
+            "indexed": true,
+            "docValues": true
+        },
+        {
+            "name": "article.title",
+            "type": "tokenizedText",
+            "indexed": true
+        },
+        {
+            "name": "article.summary",
+            "type": "tokenizedText",
+            "indexed": true
+        }, 
+        {
+            "name": "article.text",
+            "type": "tokenizedText",
             "indexed": true
         }
     ]
