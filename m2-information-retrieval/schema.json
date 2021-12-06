@@ -36,18 +36,6 @@
             "indexed": true
         },
         {
-            "name": "timestamp",
-            "type": "org.apache.solr.schema.DatePointField",
-            "indexed": true,
-            "docValues": true
-        },
-        {
-            "name": "article.publish_date",
-            "type": "org.apache.solr.schema.DatePointField",
-            "indexed": true,
-            "docValues": true
-        },
-        {
             "name": "article.title",
             "type": "tokenizedText",
             "indexed": true
