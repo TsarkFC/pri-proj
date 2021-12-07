@@ -12,7 +12,8 @@
                         "class": "solr.ASCIIFoldingFilterFactory",
                         "preserveOriginal": true
                     },
-                    { "class": "solr.LowerCaseFilterFactory" }
+                    { "class": "solr.LowerCaseFilterFactory" },
+                    { "class": "solr.PortugueseStemFilterFactory" }
                 ]
             },
             "queryAnalyzer": {
@@ -24,9 +25,14 @@
                         "class": "solr.ASCIIFoldingFilterFactory",
                         "preserveOriginal": true
                     },
-                    { "class": "solr.LowerCaseFilterFactory" }
+                    { "class": "solr.LowerCaseFilterFactory" },
+                    { "class": "solr.PortugueseStemFilterFactory" }
                 ]
             }
+        },
+        {
+            "name": "date",
+            "class": "solr.DatePointField"
         }
     ],
     "add-field": [
@@ -48,6 +54,33 @@
         {
             "name": "article.text",
             "type": "tokenizedText",
+            "indexed": true
+        },
+        {
+            "name": "timestamp",
+            "type": "date",
+            "indexed": true
+        }, 
+        {
+            "name": "article.entities.title",
+            "type": "tokenizedText",
+            "indexed": true,
+            "multiValued": true
+        },
+        {
+            "name": "article.entities.label",
+            "type": "tokenizedText",
+            "indexed": true,
+            "multiValued": true
+        },
+        {
+            "name": "article.authors",
+            "type": "tokenizedText",
+            "indexed": true
+        },
+        {
+            "name": "article.publish_date",
+            "type": "date",
             "indexed": true
         }
     ]
