@@ -82,6 +82,11 @@
             "name": "article.publish_date",
             "type": "date",
             "indexed": true
+        },
+        {
+            "name": "urlkey",
+            "type": "string",
+            "indexed": true
         }
     ]
 }
