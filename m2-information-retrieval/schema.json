@@ -50,7 +50,7 @@
             "name": "article.summary",
             "type": "tokenizedText",
             "indexed": true
-        }, 
+        },
         {
             "name": "article.text",
             "type": "tokenizedText",
@@ -69,7 +69,7 @@
         },
         {
             "name": "article.entities.label",
-            "type": "tokenizedText",
+            "type": "string",
             "indexed": true,
             "multiValued": true
         },
@@ -87,6 +87,11 @@
             "name": "urlkey",
             "type": "string",
             "indexed": true
+        },
+        {
+            "name": "newspaper",
+            "type": "string",
+            "indexed": false
         }
     ]
 }
