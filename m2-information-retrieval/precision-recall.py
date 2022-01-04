@@ -1,23 +1,33 @@
 import matplotlib.pyplot as plt
 import matplotlib
 
-# precision = [1, 1, 1, 1, 1, 0.83, 0.86, 0.75, 0.77, 0.8]
-# recall = [0.09, 0.18, 0.27, 0.36, 0.45, 0.45, 0.54, 0.54, 0.63, 0.73]
+aterragem_marte_no_custom_schema_no_weights = [1, 1, 1, 1, 1, 0, 1, 0, 1, 1]
+microsoft_teams_no_custom_schema_no_weights = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1]
+aterragem_marte_with_custom_schema_no_weights = [0, 1, 1, 0, 1, 1, 1, 1, 0, 1]
+microsoft_teams_with_custom_schema_no_weights = [1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+aterragem_marte_with_custom_schema_and_weights = [1, 1, 1, 0, 1, 1, 1, 0, 1, 0]
+microsoft_teams_with_custom_schema_and_weights = [0, 1, 1, 0, 0, 0, 0, 0, 0, 0]
 
-# precision = [0, 0.5, 0.67, 0.5, 0.6, 0.67, 0.71, 0.75, 0.67, 0.7]
-# recall = [0, 0.09, 0.18, 0.18, 0.27, 0.36, 0.45, 0.54, 0.54, 0.63]
+def calculate_precision_recall(query_results):
+    precision = []
+    recall = []
 
-precision = [1, 1, 1, 0.75, 0.8, 0.83, 0.86, 0.75, 0.77, 0.70]
-recall = [0.09, 0.18, 0.27, 0.27, 0.36, 0.45, 0.54, 0.54, 0.63, 0.63]
+    # recall relevantes / total relevantes
+    # precision relevantes / total
 
-# precision = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1]
-# recall = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0.1]
+    current_relevant_sum = 0
+    current_total = 0
+    total_relevants = sum(query_results)
 
-# precision = [1, 1, 0.67, 0.5, 0.4, 0.33, 0.29, 0.25, 0.22, 0.2]
-# recall = [0.1, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]
+    for relevant in query_results:
+        current_relevant_sum += relevant
+        current_total += 1
+        precision.append(current_relevant_sum / current_total)
+        recall.append(current_relevant_sum / total_relevants)
 
-# precision = [0, 0.5, 0.67, 0.5, 0.4, 0.33, 0.29, 0.25, 0.22, 0.2]
-# recall = [0, 0.1, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2, 0.2]
+    return precision, recall
+
+precision, recall = calculate_precision_recall(aterragem_marte_no_custom_schema_no_weights)
 
 ticks = [0, 0.2, 0.4, 0.6, 0.8, 1]
 
