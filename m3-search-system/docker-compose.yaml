@@ -1,0 +1,26 @@
+version: "3.3"
+services:
+  frontend:
+    build:
+      context: frontend/
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./frontend:/app
+
+  backend:
+    build:
+      context: backend/
+      dockerfile: Dockerfile
+    ports:
+      - '3001:3001'
+    volumes:
+      - ./backend:/app
+
+  solr:
+    build:
+      context: solr/
+      dockerfile: Dockerfile
+    ports:
+      - '8983:8983'

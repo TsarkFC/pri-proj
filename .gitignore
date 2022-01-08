@@ -7,3 +7,7 @@ plots/
 data-not-clean-add-not-entities.zip
 !schema.json
 PRI First Milestone.zip
+!tsconfig.json
+!package.json
+node_modules
+*.lock
