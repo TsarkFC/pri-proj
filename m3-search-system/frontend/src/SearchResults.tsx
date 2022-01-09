@@ -1,4 +1,4 @@
-import { QueryResult } from "./query/Query";
+import { ArquivoDoc, QueryResult } from "./query/Query";
 
 export interface SearchResultsProps {
     result: QueryResult
@@ -7,7 +7,7 @@ export interface SearchResultsProps {
 export const SearchResults = ({ result }: SearchResultsProps) => {
     return <>
         <p>Found {result.response.numFound} results.</p>
-        {result.response.docs.map((doc: any, idx: number) => 
+        {result.response.docs.map((doc: ArquivoDoc, idx: number) => 
             <div key={idx}>
                 <h2><a href={doc["url"]}>{doc["article.title"]}</a></h2>
                 <p>

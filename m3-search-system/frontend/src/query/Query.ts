@@ -14,7 +14,19 @@ export const getFullTextSearch: Query = (text?: string) => {
 export type Query = (query?: string) => Promise<AxiosResponse<QueryResult, any>>
 
 export interface ArquivoDoc {
-
+    "article.authors": string,
+    "article.entities.label": string[],
+    "article.entities.title": string[],
+    "article.image": string,
+    "article.publish_date": string,
+    "article.summary": string,
+    "article.text": string,
+    "article.title": string,
+    id: string,
+    newspaper: string,
+    timestamp: string,
+    url: string,
+    urlkey: string
 }
 
 export interface QueryResult {
