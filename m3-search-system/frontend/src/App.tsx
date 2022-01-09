@@ -1,34 +1,26 @@
-import axios from 'axios';
 import { useState } from 'react';
+import { getAll, getFullTextSearch, Query, QueryResult } from './query/Query';
+import { SearchResults } from './SearchResults';
 
 function App() {
-  const [queryResult, setQueryResult] = useState<any>(null)
+  const [queryResult, setQueryResult] = useState<QueryResult | null>(null)
+  const [queryInput, setQueryInput] = useState("")
 
-  const runQuery = () => {
-    axios.get("http://localhost:3001/test")
+  const runQuery = (query: Query) => {
+    query(queryInput)
       .then(result => {
-        console.log(result)
-        setQueryResult(result)
+        console.log(result.data)
+        setQueryResult(result.data)
       })
   }
 
-
-  return <div>
+  return <div id="layout">
     <h1>Greatest Search Engine Ever</h1>
-    <input type="button" onClick={ runQuery } value="click here to run test query" />
-    {queryResult === null ? null : 
-      <>
-        <p>Found {queryResult.data.response.numFound} results.</p>
-        {queryResult.data.response.docs.map((doc: any, idx: number) => <div key={idx}>
-          <h2><a href={doc["url"]}>{doc["article.title"]}</a></h2>
-          <p>
-            {doc["article.entities.title"].map((entity: string, idx: number, arr: Array<String>) => <span key={idx}>
-              {entity + (arr.length - 1 !== idx ? ", " : "")}
-            </span>)}
-          </p>
-        </div>)}
-      </>    
-    }
+    <form onSubmit={ (event) => { event.preventDefault(); runQuery(getFullTextSearch) } }>
+      <input type="text" value={queryInput} onChange={ (event) => setQueryInput(event.target.value) } />
+      <input type="submit" value="Search" />
+    </form>
+    {queryResult === null ? null : <SearchResults result={queryResult} /> }
   </div>
 }
 

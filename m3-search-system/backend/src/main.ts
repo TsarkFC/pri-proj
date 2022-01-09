@@ -1,7 +1,7 @@
-import express from 'express';
-import { env } from 'process';
-import { createClient } from 'solr-client';
-import cors from 'cors';
+import express from 'express'
+import { env } from 'process'
+import { createClient } from 'solr-client'
+import cors from 'cors'
 
 const app = express();
 const PORT = env.PORT;
@@ -15,8 +15,17 @@ const client = createClient({
     path: "/solr"
 })
 
-app.get('/test', async (_req, res) => {
-    const query = 'q=*:*'
+app.get('/query/:query', async (req, res) => {
+    const query = req.params.query
+        .split("&")
+        .map(part => part
+                        .split("=")
+                        .map(subpart => encodeURIComponent(subpart))
+                        .join("="))
+        .join("&")
+
+    console.log(query)
+
     const response = await client.doQuery('query', query)
     res.send(response)
 })
