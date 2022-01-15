@@ -20,6 +20,8 @@ entities = pd.read_csv("./dataset/entities.csv", sep=",")
 
 entities_memo = {}
 fields_to_remove = ["mime", "status", "digest", "length", "offset", "filename", "collection", "source", "source-coll"]
+ignored_entities = {}
+ignored_strings = ["http", "/", "\\", "@"]
 
 for newspaper in data.keys():
     for urlkey in data[newspaper]:
@@ -32,13 +34,18 @@ for newspaper in data.keys():
             obj["article"]["publish_date"] = format_date_to_solr(obj["article"]["publish_date"])
             new_entities = []
             for entity_id in obj["article"]["entities"]:
+                if (entity_id in ignored_entities):
+                    continue
                 if (entity_id in entities_memo):
                     new_entities.append(entities_memo[entity_id])
                 else:
                     line = entities[entities["entity_pk"] == entity_id]
                     parsed = line.to_dict(orient="records")[0]
-                    new_entities.append(parsed)
-                    entities_memo[entity_id] = parsed
+                    if all(s not in parsed['title'] for s in ignored_strings):
+                        new_entities.append(parsed)
+                        entities_memo[entity_id] = parsed
+                    else:
+                        ignored_entities[entity_id] = True
 
             obj["article"]["entities"] = new_entities
 
