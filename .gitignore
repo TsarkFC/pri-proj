@@ -6,6 +6,7 @@ Test/
 plots/
 data-not-clean-add-not-entities.zip
 !schema.json
+!synonyms.json
 PRI First Milestone.zip
 !tsconfig.json
 !package.json

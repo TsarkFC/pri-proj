@@ -1,97 +1,112 @@
 {
-    "add-field-type": [
-        {
-            "name": "tokenizedText",
-            "class": "solr.TextField",
-            "indexAnalyzer": {
-                "tokenizer": {
-                    "class": "solr.StandardTokenizerFactory"
-                },
-                "filters": [
-                    {
-                        "class": "solr.ASCIIFoldingFilterFactory",
-                        "preserveOriginal": true
-                    },
-                    { "class": "solr.LowerCaseFilterFactory" },
-                    { "class": "solr.PortugueseStemFilterFactory" }
-                ]
-            },
-            "queryAnalyzer": {
-                "tokenizer": {
-                    "class": "solr.StandardTokenizerFactory"
-                },
-                "filters": [
-                    {
-                        "class": "solr.ASCIIFoldingFilterFactory",
-                        "preserveOriginal": true
-                    },
-                    { "class": "solr.LowerCaseFilterFactory" },
-                    { "class": "solr.PortugueseStemFilterFactory" }
-                ]
-            }
+  "add-field-type": [
+    {
+      "name": "tokenizedText",
+      "class": "solr.TextField",
+      "indexAnalyzer": {
+        "tokenizer": {
+          "class": "solr.StandardTokenizerFactory"
         },
-        {
-            "name": "date",
-            "class": "solr.DatePointField"
-        }
-    ],
-    "add-field": [
-        {
-            "name": "url",
-            "type": "tokenizedText",
-            "indexed": true
+        "filters": [
+          {
+            "class": "solr.ASCIIFoldingFilterFactory",
+            "preserveOriginal": true
+          },
+          { "class": "solr.LowerCaseFilterFactory" },
+          {
+            "class": "solr.SynonymGraphFilterFactory",
+            "synonyms": "synonyms.txt",
+            "ignoreCase": true,
+            "expand": true
+          },
+          { "class": "solr.FlattenGraphFilterFactory" },
+          { "class": "solr.PortugueseStemFilterFactory" },
+          { "class": "solr.PortugueseStemFilterFactory" }
+        ]
+      },
+      "queryAnalyzer": {
+        "tokenizer": {
+          "class": "solr.StandardTokenizerFactory"
         },
-        {
-            "name": "article.title",
-            "type": "tokenizedText",
-            "indexed": true
-        },
-        {
-            "name": "article.summary",
-            "type": "tokenizedText",
-            "indexed": true
-        },
-        {
-            "name": "article.text",
-            "type": "tokenizedText",
-            "indexed": true
-        },
-        {
-            "name": "timestamp",
-            "type": "date",
-            "indexed": true
-        }, 
-        {
-            "name": "article.entities.title",
-            "type": "tokenizedText",
-            "indexed": true,
-            "multiValued": true
-        },
-        {
-            "name": "article.entities.label",
-            "type": "string",
-            "indexed": true,
-            "multiValued": true
-        },
-        {
-            "name": "article.authors",
-            "type": "tokenizedText",
-            "indexed": true
-        },
-        {
-            "name": "article.publish_date",
-            "type": "date",
-            "indexed": true
-        },
-        {
-            "name": "urlkey",
-            "type": "string",
-            "indexed": true
-        },
-        {
-            "name": "newspaper",
-            "type": "string",
-            "indexed": false
-        }
-    ]
+        "filters": [
+          {
+            "class": "solr.ASCIIFoldingFilterFactory",
+            "preserveOriginal": true
+          },
+          { "class": "solr.LowerCaseFilterFactory" },
+          {
+            "class": "solr.SynonymGraphFilterFactory",
+            "synonyms": "synonyms.txt",
+            "ignoreCase": true,
+            "expand": true
+          },
+          { "class": "solr.PortugueseStemFilterFactory" }
+        ]
+      }
+    },
+    {
+      "name": "date",
+      "class": "solr.DatePointField"
+    }
+  ],
+  "add-field": [
+    {
+      "name": "url",
+      "type": "tokenizedText",
+      "indexed": true
+    },
+    {
+      "name": "article.title",
+      "type": "tokenizedText",
+      "indexed": true,
+      "stored": true
+    },
+    {
+      "name": "article.summary",
+      "type": "tokenizedText",
+      "indexed": true
+    },
+    {
+      "name": "article.text",
+      "type": "tokenizedText",
+      "indexed": true
+    },
+    {
+      "name": "timestamp",
+      "type": "date",
+      "indexed": true
+    },
+    {
+      "name": "article.entities.title",
+      "type": "tokenizedText",
+      "indexed": true,
+      "multiValued": true
+    },
+    {
+      "name": "article.entities.label",
+      "type": "string",
+      "indexed": true,
+      "multiValued": true
+    },
+    {
+      "name": "article.authors",
+      "type": "tokenizedText",
+      "indexed": true
+    },
+    {
+      "name": "article.publish_date",
+      "type": "date",
+      "indexed": true
+    },
+    {
+      "name": "urlkey",
+      "type": "string",
+      "indexed": true
+    },
+    {
+      "name": "newspaper",
+      "type": "string",
+      "indexed": false
+    }
+  ]
 }
