@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { getAll, getFullTextSearch, Query, QueryResult } from './query/Query';
 import { SearchResults } from './SearchResults';
+import { SearchFilters } from './SearchFilters';
 
 function App() {
   const [queryResult, setQueryResult] = useState<QueryResult | null>(null)
@@ -17,9 +18,12 @@ function App() {
   return <div id="layout">
     <h1>Greatest Search Engine Ever</h1>
     <form onSubmit={ (event) => { event.preventDefault(); runQuery(getFullTextSearch) } }>
-      <input type="text" value={queryInput} onChange={ (event) => setQueryInput(event.target.value) } />
+      <input type="text" value={queryInput} onChange={ (event) => {
+        setQueryInput(event.target.value);
+       } } />
       <input type="submit" value="Search" />
     </form>
+    {queryResult === null ? null : <SearchFilters result={queryResult} /> }
     {queryResult === null ? null : <SearchResults result={queryResult} /> }
   </div>
 }

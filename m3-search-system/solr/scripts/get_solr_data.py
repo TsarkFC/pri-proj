@@ -32,6 +32,8 @@ for newspaper in data.keys():
             obj["newspaper"] = newspaper
             obj["timestamp"] = format_date_to_solr(obj["timestamp"])
             obj["article"]["publish_date"] = format_date_to_solr(obj["article"]["publish_date"])
+            obj["article"]["authors_facet"] = obj["article"]["authors"] # added to improve facet results
+
             new_entities = []
             for entity_id in obj["article"]["entities"]:
                 if (entity_id in ignored_entities):
@@ -42,6 +44,7 @@ for newspaper in data.keys():
                     line = entities[entities["entity_pk"] == entity_id]
                     parsed = line.to_dict(orient="records")[0]
                     if all(s not in parsed['title'] for s in ignored_strings):
+                        parsed["title_facet"] = parsed["title"] # added to improve facet results
                         new_entities.append(parsed)
                         entities_memo[entity_id] = parsed
                     else:

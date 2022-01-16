@@ -20,8 +20,9 @@
             "expand": true
           },
           { "class": "solr.FlattenGraphFilterFactory" },
+          { "class": "solr.KeywordRepeatFilterFactory" },
           { "class": "solr.PortugueseStemFilterFactory" },
-          { "class": "solr.PortugueseStemFilterFactory" }
+          { "class": "solr.RemoveDuplicatesTokenFilterFactory" }
         ]
       },
       "queryAnalyzer": {
@@ -40,7 +41,9 @@
             "ignoreCase": true,
             "expand": true
           },
-          { "class": "solr.PortugueseStemFilterFactory" }
+          { "class": "solr.KeywordRepeatFilterFactory" },
+          { "class": "solr.PortugueseStemFilterFactory" },
+          { "class": "solr.RemoveDuplicatesTokenFilterFactory" }
         ]
       }
     },
@@ -83,6 +86,12 @@
       "multiValued": true
     },
     {
+        "name": "article.entities.title_facet",
+        "type": "string",
+        "indexed": true,
+        "multiValued": true
+    },
+    {
       "name": "article.entities.label",
       "type": "string",
       "indexed": true,
@@ -91,6 +100,11 @@
     {
       "name": "article.authors",
       "type": "tokenizedText",
+      "indexed": true
+    },
+    {
+      "name": "article.authors_facet",
+      "type": "string",
       "indexed": true
     },
     {
