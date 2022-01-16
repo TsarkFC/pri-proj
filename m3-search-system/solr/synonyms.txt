@@ -1,1 +1,10 @@
 tv,televisao,plasma,ecra
+queda,cair,perda,baixa
+aumento,subida,ganho,crescimento
+smartphone,telemovel
+estudante,aluno
+app,aplicacao,software
+cura,tratamento,solucao
+descobrir,inventar,encontrar
+diagnosticar,detetar,descobrir,identificar
+aterrar,chegar,pousar
