@@ -12,3 +12,4 @@ PRI First Milestone.zip
 !package.json
 node_modules
 *.lock
+report/

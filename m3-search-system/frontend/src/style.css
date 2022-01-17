@@ -1,3 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
+@import url('icofont.min.css');
+
+body {
+    font-family: 'Nunito', sans-serif;
+}
+
+h1 {
+    font-weight: 900;
+    font-size: 3rem; 
+}
+h2 {
+    margin-bottom: .8rem;
+}
+p#entities {
+    margin-top: 0;
+    display: flex;
+    column-gap: .5rem;
+    row-gap: .3rem;
+    flex-wrap: wrap;
+}
+
 #layout {
     padding: 2rem 25vw 2rem 25vw;
+}
+
+#search-form {
+    display: flex;
+}
+
+input[type=text] {
+    border: 1px solid black;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    padding: .5rem 1rem .5rem 1rem;
+    flex-grow: 1;
+}
+
+#search-button {
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    border: 1px solid black;
+    border-left: none;
+    font-size: 1.1rem;
+    padding: .5rem 1rem .5rem 1rem;
+    cursor: pointer;
+    background-color: rgb(233, 233, 233);
+    flex-grow: 0;
+}
+
+a {
+    color: rgb(5, 60, 150);
+    transition: color .1s;
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(0, 139, 219);
+}
+
+hr {
+    height: 2px;
+    border: none;
+    background-color: rgb(226, 226, 226);
+}
+
+span.entity {
+    font-size: .7rem;
+    background-color: rgb(241, 241, 241);
+    border: 1px solid rgb(212, 212, 212);
+    border-radius: .7rem;
+    padding: .2rem .4rem .2rem .4rem;
+}
+
+h3.subtitle {
+    margin: 0;
+    margin-bottom: .5rem;
+}
+
+h4.filter-title {
+    margin: 0;
+    margin-bottom: .2rem;
+}
+
+#filters-box {
+    margin-top: 1rem;
+    border-radius: 1rem;
+    background-color: rgb(241, 241, 241);
+    border: 1px solid rgb(212, 212, 212);
+    padding: 1rem;
+}
+
+#filters-flex-container {
+    display: flex;
+    column-gap: .5rem;
+    justify-content: space-between;
+
 }

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  getAll,
   getFullTextSearch,
   Query,
   QueryResult,
@@ -29,8 +28,9 @@ function App() {
 
   return (
     <div id="layout">
-      <h1>Greatest Search Engine Ever</h1>
+      <h1>Portuguese Tech News Explorer</h1>
       <form
+        id="search-form"
         onSubmit={(event) => {
           event.preventDefault();
           runQuery(getFullTextSearch);
@@ -43,7 +43,7 @@ function App() {
             setQueryInput(event.target.value);
           }}
         />
-        <input type="submit" value="Search" />
+        <button id="search-button" type="submit"><i className="icofont-ui-search"></i></button>
       </form>
       {queryFacetFields.length === 0 ? null : (
         <SearchFilters fields={queryFacetFields} runQuery={runQuery} />

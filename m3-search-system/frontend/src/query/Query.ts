@@ -37,13 +37,13 @@ const addFiltersToQuery = (query: string, filters: string[][]) => {
 export const getAll: Query = () => executeQuery("q=*:*&defType=edismax");
 
 export const buildQuery = (text: string, filters?: string[][]) => {
-  const query = `q=${text}&defType=edismax&qf=article.title^3 article.entities.title^3 article.text article.summary article.publish_date`;
+  const query = `q=${text}&defType=edismax&qf=article.title^10 article.entities.title article.text article.summary article.publish_date&fq={!collapse field="urlkey" sort='timestamp desc'}`;
   return filters ? addFiltersToQuery(query, filters) : addFacetsToQuery(query);
 };
 
 export const getFullTextSearch: Query = (text?: string) => {
   const def =
-    "q=&defType=edismax&qf=article.title^3 article.entities.title^3 article.text article.summary article.publish_date";
+    `q=&defType=edismax&qf=article.title^10 article.entities.title article.text article.summary article.publish_date&fq={!collapse field="urlkey" sort='timestamp desc'}`;
   return executeQuery(text ? text : def);
 };
 

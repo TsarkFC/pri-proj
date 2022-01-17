@@ -13,15 +13,17 @@ export const SearchResults = ({ result }: SearchResultsProps) => {
           <h2>
             <a href={doc["url"]}>{doc["article.title"]}</a>
           </h2>
-          <p>
+          <p id="entities">
             {doc["article.entities.title"].map(
               (entity: string, idx: number, arr: Array<String>) => (
-                <span key={idx}>
-                  {entity + (arr.length - 1 !== idx ? ", " : "")}
+                <span key={idx} className="entity">
+                  {entity}
                 </span>
               )
             )}
           </p>
+          <p dangerouslySetInnerHTML={{__html: doc["article.summary"]}}></p>
+          <hr/>
         </div>
       ))}
     </>

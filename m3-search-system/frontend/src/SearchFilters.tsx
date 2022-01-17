@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { QueryResult, getFullTextSearch } from "./query/Query";
+import { getFullTextSearch } from "./query/Query";
 
 export interface SearchResultsProps {
   fields: any[];
@@ -8,15 +8,16 @@ export interface SearchResultsProps {
 
 export const SearchFilters = ({ fields, runQuery }: SearchResultsProps) => {
   const [selectedFacetFields] = useState([[""], [""], [""]]);
-  const titles = ["Autores", "Entidades", "Jornais"];
+  const titles = ["Authors", "Entities", "Newspapers"];
 
   let i = 0;
   return (
-    <>
-      <p>Filters</p>
+    <div id="filters-box">
+      <h3 className="subtitle">Filters</h3>
+      <div id="filters-flex-container">
       {fields.map((field: any, idx: number) => (
         <div key={idx}>
-          <h3>{titles[i++]}</h3>
+          <h4 className="filter-title">{titles[i++]}</h4>
           <form>
             {field.map((facet: any[], idx: number) => (
               <div key={idx}>
@@ -52,6 +53,7 @@ export const SearchFilters = ({ fields, runQuery }: SearchResultsProps) => {
           </form>
         </div>
       ))}
-    </>
+      </div>
+    </div>
   );
 };
